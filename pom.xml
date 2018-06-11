@@ -3,7 +3,7 @@
 
   <groupId>no.nav.pam.postnummer</groupId>
   <artifactId>pam-postnummer</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
 
   <name>pam-postnummer</name>
 
@@ -42,7 +42,7 @@
   <scm>
     <connection>scm:git:https://github.com/navikt/pam-postnummer.git</connection>
     <developerConnection>scm:git:https://github.com/navikt/pam-postnummer.git</developerConnection>
-    <tag>pam-postnummer-1.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
