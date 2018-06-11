@@ -39,4 +39,25 @@
       <version>1.7.25</version>
     </dependency>
   </dependencies>
+
+  <scm>
+    <connection>scm:git:https://github.com/navikt/pam-postnummer.git</connection>
+    <developerConnection>scm:git:https://github.com/navikt/pam-postnummer.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>m2internal</id>
+      <name>NAV Maven2 Internal Repository</name>
+      <url>https://repo.adeo.no/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>m2snapshot</id>
+      <name>NAV Maven2 Snapshot Repository</name>
+      <url>https://repo.adeo.no/repository/maven-snapshots</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+
 </project>
