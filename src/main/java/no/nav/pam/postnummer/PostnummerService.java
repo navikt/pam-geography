@@ -6,9 +6,8 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -48,6 +47,10 @@ public class PostnummerService {
 
     public Optional<PostData> findPostData(String postkode) {
         return Optional.ofNullable(postalCodeTable.get(postkode));
+    }
+
+    public List<PostData> findAllPostData() {
+        return new ArrayList<>(postalCodeTable.values());
     }
 
     public static class PostData {
