@@ -1,7 +1,7 @@
-package no.nav.pam.postnummer;
+package no.nav.pam.geography;
 
-import
-        no.nav.pam.postnummer.PostnummerService.PostData;
+
+import no.nav.pam.geography.model.PostData;
 import org.junit.Test;
 
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class PostnummerServiceTest {
+public class PostalCodeerviceTest {
 
     @Test
     public void should_lookup_postcode() throws Exception {
-        PostnummerService service = new PostnummerService();
+        PostalCodeService service = new PostalCodeService();
         service.init();
 
         PostData pd1 = service.findPostData("0010").orElse(null);
@@ -31,10 +31,10 @@ public class PostnummerServiceTest {
 
     @Test
     public void should_get_all_postdata_as_list() throws Exception {
-        PostnummerService postnummerService = new PostnummerService();
-        postnummerService.init();
+        PostalCodeService service = new PostalCodeService();
+        service.init();
 
-        List<PostData> postDataList = postnummerService.findAllPostData();
+        List<PostData> postDataList = service.findAllPostData();
         assertFalse(postDataList.isEmpty());
     }
 }
