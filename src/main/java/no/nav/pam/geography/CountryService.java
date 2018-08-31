@@ -4,13 +4,14 @@ package no.nav.pam.geography;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -21,16 +22,8 @@ public class CountryService {
 
     private final List<Country> countryList;
 
-    public CountryService() {
-        countryList = new ArrayList();
-    }
-
-    public List<Country> getImmutableCountryList() {
-        return Collections.unmodifiableList(countryList);
-    }
-
-    @PostConstruct
-    public CountryService init() throws Exception {
+    public CountryService() throws IOException {
+        List<Country> templist = new ArrayList();
 
         String line;
         String csvSplitBy = ";";
@@ -41,15 +34,24 @@ public class CountryService {
                 String[] landArray = line.split(csvSplitBy);
 
                 Country country = new Country(stripQuotes(landArray[0]), stripQuotes(landArray[3]));
-                countryList.add(country);
+                templist.add(country);
             }
         }
 
         //remove headers
-        countryList.remove(0);
+        templist.remove(0);
+        countryList = Collections.unmodifiableList(templist);
 
         LOG.info("Imported the postal code table from file to memory.");
-        return this;
+    }
+
+    public List<Country> getImmutableCountryList() {
+        return countryList;
+    }
+
+    public Optional<Country> findCountry(String name) {
+
+        return countryList.stream().filter(c -> c.getName().equalsIgnoreCase(name)).findFirst();
     }
 
     private String stripQuotes(String value) {

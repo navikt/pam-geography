@@ -3,8 +3,8 @@ package no.nav.pam.geography;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -21,12 +21,9 @@ public class PostalCodeService {
 
     private final Map<String, PostData> postalCodeTable;
 
-    public PostalCodeService() {
-        postalCodeTable = new HashMap<>();
-    }
+    public PostalCodeService() throws IOException {
 
-    @PostConstruct
-    public PostalCodeService init() throws Exception {
+        postalCodeTable = new HashMap<>();
 
         String line;
         String csvSplitBy = "\t";
@@ -43,8 +40,6 @@ public class PostalCodeService {
         }
 
         LOG.info("Imported the postal code table from file to memory.");
-        return this;
-
     }
 
     public Optional<PostData> findPostData(String postalCode) {
@@ -52,6 +47,6 @@ public class PostalCodeService {
     }
 
     public List<PostData> findAllPostData() {
-        return new ArrayList<>(postalCodeTable.values());
+        return Collections.unmodifiableList(new ArrayList<>(postalCodeTable.values()));
     }
 }
