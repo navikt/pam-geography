@@ -1,4 +1,4 @@
-package no.nav.pam.geography.model;
+package no.nav.pam.geography;
 
 public class PostData {
 

@@ -1,7 +1,6 @@
 package no.nav.pam.geography;
 
 
-import no.nav.pam.geography.model.PostData;
 import org.junit.Test;
 
 import java.util.List;

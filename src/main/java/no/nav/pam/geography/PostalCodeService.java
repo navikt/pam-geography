@@ -1,6 +1,5 @@
 package no.nav.pam.geography;
 
-import no.nav.pam.geography.model.PostData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

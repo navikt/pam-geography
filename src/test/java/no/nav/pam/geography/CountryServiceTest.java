@@ -1,7 +1,6 @@
 package no.nav.pam.geography;
 
 import junit.framework.TestCase;
-import no.nav.pam.geography.model.Country;
 import org.junit.Test;
 
 import java.util.List;
