@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,12 +35,14 @@ public class CountryService {
         String line;
         String csvSplitBy = ";";
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(FILENAME), UTF_8));
-        while ((line = br.readLine()) != null) {
-            String[] landArray = line.split(csvSplitBy);
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(FILENAME)) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, UTF_8));
+            while ((line = br.readLine()) != null) {
+                String[] landArray = line.split(csvSplitBy);
 
-            Country country = new Country(stripQuotes(landArray[0]), stripQuotes(landArray[3]));
-            countryList.add(country);
+                Country country = new Country(stripQuotes(landArray[0]), stripQuotes(landArray[3]));
+                countryList.add(country);
+            }
         }
 
         //remove headers

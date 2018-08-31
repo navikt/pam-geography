@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
@@ -30,13 +31,15 @@ public class PostalCodeService {
         String line;
         String csvSplitBy = "\t";
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(FILENAME), UTF_8));
-        while ((line = br.readLine()) != null) {
-            String[] postArray = line.split(csvSplitBy);
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(FILENAME)) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, UTF_8));
+            while ((line = br.readLine()) != null) {
+                String[] postArray = line.split(csvSplitBy);
 
-            String countyName = CountyService.findCounty(postArray[2].substring(0, 2)).orElse(null);
-            PostData data = new PostData(postArray[0], postArray[1], postArray[3], postArray[2], countyName);
-            postalCodeTable.put(data.getPostalCode(), data);
+                String countyName = CountyService.findCounty(postArray[2].substring(0, 2)).orElse(null);
+                PostData data = new PostData(postArray[0], postArray[1], postArray[3], postArray[2], countyName);
+                postalCodeTable.put(data.getPostalCode(), data);
+            }
         }
 
         LOG.info("Imported the postal code table from file to memory.");
