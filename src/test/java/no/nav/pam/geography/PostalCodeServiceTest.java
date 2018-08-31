@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class PostalCodeerviceTest {
+public class PostalCodeServiceTest {
 
     @Test
     public void should_lookup_postcode() throws Exception {
