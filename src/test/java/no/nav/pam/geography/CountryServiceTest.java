@@ -19,7 +19,7 @@ public class CountryServiceTest {
 
         Optional<Country> norway = list.stream().filter(s -> s.getCode().equals("NO")).findFirst();
         TestCase.assertTrue(norway.isPresent());
-        TestCase.assertEquals("Norge", norway.get().getName());
+        TestCase.assertEquals("NORGE", norway.get().getName());
 
         Optional<Country> header = list.stream().filter(s -> s.getCode().equals("code")).findFirst();
         TestCase.assertFalse(header.isPresent());
