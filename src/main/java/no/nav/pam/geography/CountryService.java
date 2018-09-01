@@ -33,7 +33,7 @@ public class CountryService {
             while ((line = br.readLine()) != null) {
                 String[] landArray = line.split(csvSplitBy);
 
-                Country country = new Country(stripQuotes(landArray[0]), stripQuotes(landArray[3]));
+                Country country = new Country(stripQuotesAndCapitalize(landArray[0]), stripQuotesAndCapitalize(landArray[3]));
                 templist.add(country);
             }
         }
@@ -54,7 +54,7 @@ public class CountryService {
         return countryList.stream().filter(c -> c.getName().equalsIgnoreCase(name)).findFirst();
     }
 
-    private String stripQuotes(String value) {
-        return value.substring(1, value.length() - 1);
+    private String stripQuotesAndCapitalize(String value) {
+        return value.substring(1, value.length() - 1).toUpperCase();
     }
 }
