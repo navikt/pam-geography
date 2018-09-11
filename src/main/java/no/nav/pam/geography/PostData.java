@@ -1,5 +1,8 @@
 package no.nav.pam.geography;
 
+import java.util.Objects;
+import java.util.Optional;
+
 public class PostData {
 
     private String postalCode;
@@ -22,19 +25,27 @@ public class PostData {
         return city;
     }
 
-    public Municipality getMunicipality() {
-        return municipality;
+    public Optional<Municipality> getMunicipality() {
+        return Optional.ofNullable(municipality);
     }
 
-    public void setMunicipality(Municipality municipality) {
-        this.municipality = municipality;
+    public Optional<County> getCounty() {
+        return Optional.ofNullable(county);
     }
 
-    public County getCounty() {
-        return county;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PostData postData = (PostData) o;
+        return Objects.equals(postalCode, postData.postalCode) &&
+                Objects.equals(city, postData.city) &&
+                Objects.equals(municipality, postData.municipality) &&
+                Objects.equals(county, postData.county);
     }
 
-    public void setCounty(County county) {
-        this.county = county;
+    @Override
+    public int hashCode() {
+        return Objects.hash(postalCode, city, municipality, county);
     }
 }

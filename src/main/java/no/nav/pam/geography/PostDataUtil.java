@@ -54,7 +54,7 @@ public class PostDataUtil {
 
     public Set<Municipality> getAllMunicipalities() {
         return getAllPostData().stream()
-                .map(p -> p.getMunicipality())
+                .map(p -> p.getMunicipality().get())
                 .collect(Collectors.toSet());
     }
 }
