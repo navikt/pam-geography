@@ -10,36 +10,36 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class PostalCodeServiceTest {
+public class PostDataUtilTest {
 
     @Test
     public void should_lookup_postcode() throws Exception {
-        PostalCodeService service = new PostalCodeService();
+        PostDataUtil service = new PostDataUtil();
 
         PostData pd1 = service.findPostData("0010").orElse(null);
         assertEquals("OSLO", pd1.getCity());
-        assertEquals("0301", pd1.getMunicipalityCode());
-        assertEquals("OSLO", pd1.getMunicipality());
-        assertEquals("OSLO", pd1.getCounty());
+        assertEquals("0301", pd1.getMunicipality().getCode());
+        assertEquals("OSLO", pd1.getMunicipality().getName());
+        assertEquals("OSLO", pd1.getCounty().getName());
 
         PostData pd2 = service.findPostData("7053").orElse(null);
         assertEquals("RANHEIM", pd2.getCity());
-        assertEquals("5001", pd2.getMunicipalityCode());
-        assertEquals("TRONDHEIM", pd2.getMunicipality());
-        assertEquals("TRØNDELAG", pd2.getCounty());
+        assertEquals("5001", pd2.getMunicipality().getCode());
+        assertEquals("TRONDHEIM", pd2.getMunicipality().getName());
+        assertEquals("TRØNDELAG", pd2.getCounty().getName());
     }
 
     @Test
     public void should_get_all_postdata_as_list() throws Exception {
-        PostalCodeService service = new PostalCodeService();
-        List<PostData> postDataList = service.findAllPostData();
+        PostDataUtil service = new PostDataUtil();
+        List<PostData> postDataList = service.getAllPostData();
         assertFalse(postDataList.isEmpty());
     }
 
     @Test
     public void should_get_all_municipalities() throws IOException {
-        PostalCodeService service = new PostalCodeService();
-        Set<Municipality> municipalitySet = service.findAllMunicipalities();
+        PostDataUtil service = new PostDataUtil();
+        Set<Municipality> municipalitySet = service.getAllMunicipalities();
         assertFalse(municipalitySet.isEmpty());
         assertEquals(429, municipalitySet.size());
     }

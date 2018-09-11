@@ -4,15 +4,13 @@ public class PostData {
 
     private String postalCode;
     private String city;
-    private String municipality;
-    private String municipalityCode;
-    private String county;
+    private Municipality municipality;
+    private County county;
 
-    public PostData(String postalCode, String city, String municipality, String municipalityCode, String county) {
+    public PostData(String postalCode, String city, Municipality municipality, County county) {
         this.postalCode = postalCode;
         this.city = city;
         this.municipality = municipality;
-        this.municipalityCode = municipalityCode;
         this.county = county;
     }
 
@@ -24,15 +22,19 @@ public class PostData {
         return city;
     }
 
-    public String getMunicipality() {
+    public Municipality getMunicipality() {
         return municipality;
     }
 
-    public String getMunicipalityCode() {
-        return municipalityCode;
+    public void setMunicipality(Municipality municipality) {
+        this.municipality = municipality;
     }
 
-    public String getCounty() {
+    public County getCounty() {
         return county;
+    }
+
+    public void setCounty(County county) {
+        this.county = county;
     }
 }
