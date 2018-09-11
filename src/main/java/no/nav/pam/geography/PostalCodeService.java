@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -48,5 +49,11 @@ public class PostalCodeService {
 
     public List<PostData> findAllPostData() {
         return Collections.unmodifiableList(new ArrayList<>(postalCodeTable.values()));
+    }
+
+    public Set<Municipality> findAllMunicipalities(){
+        return findAllPostData().stream()
+                .map(p -> new Municipality(p.getMunicipalityCode(), p.getMunicipality()))
+                .collect(Collectors.toSet());
     }
 }

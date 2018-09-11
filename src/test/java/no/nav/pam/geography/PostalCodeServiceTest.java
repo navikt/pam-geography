@@ -3,7 +3,9 @@ package no.nav.pam.geography;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -32,5 +34,13 @@ public class PostalCodeServiceTest {
         PostalCodeService service = new PostalCodeService();
         List<PostData> postDataList = service.findAllPostData();
         assertFalse(postDataList.isEmpty());
+    }
+
+    @Test
+    public void should_get_all_municipalities() throws IOException {
+        PostalCodeService service = new PostalCodeService();
+        Set<Municipality> municipalitySet = service.findAllMunicipalities();
+        assertFalse(municipalitySet.isEmpty());
+        assertEquals(429, municipalitySet.size());
     }
 }
