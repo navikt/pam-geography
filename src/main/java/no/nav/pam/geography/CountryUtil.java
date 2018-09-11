@@ -15,14 +15,14 @@ import java.util.Optional;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-public class CountryService {
+public class CountryUtil {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CountryService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CountryUtil.class);
     private final static String FILENAME = "country_codes_iso3166.csv";
 
     private final List<Country> countryList;
 
-    public CountryService() throws IOException {
+    public CountryUtil() throws IOException {
         List<Country> templist = new ArrayList();
 
         String line;
