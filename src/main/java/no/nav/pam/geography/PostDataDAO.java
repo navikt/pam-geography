@@ -42,12 +42,12 @@ public class PostDataDAO {
                     PostData data = new PostData(postalCode, city, municipality, county);
                     postalCodeTable.put(data.getPostalCode(), data);
                 } else {
-                    LOG.error("There was an error parsing post data from file for postal code {}", postArray[0]);
+                    throw new IOException("There was an error parsing post data from file for postal code {}");
                 }
             }
         }
 
-        LOG.info("Imported the postal code table from file to memory.");
+        LOG.debug("Imported the postal code table from file to memory.");
     }
 
     public Optional<PostData> findPostData(String postalCode) {
