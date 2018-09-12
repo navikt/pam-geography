@@ -8,20 +8,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Source: https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer
  */
-public class PostalCodeService {
+public class PostDataDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PostalCodeService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PostDataDAO.class);
     private final static String FILENAME = "postal_codes_no.tsv";
 
     private final Map<String, PostData> postalCodeTable;
 
-    public PostalCodeService() throws IOException {
+    public PostDataDAO() throws IOException {
 
         postalCodeTable = new HashMap<>();
 
@@ -33,8 +34,9 @@ public class PostalCodeService {
             while ((line = br.readLine()) != null) {
                 String[] postArray = line.split(csvSplitBy);
 
-                String countyName = CountyService.findCounty(postArray[2].substring(0, 2)).orElse(null);
-                PostData data = new PostData(postArray[0], postArray[1], postArray[3], postArray[2], countyName);
+                Municipality municipality = new Municipality(postArray[2], postArray[3]);
+                County county = CountyDAO.findCounty(postArray[2].substring(0, 2)).orElse(null);
+                PostData data = new PostData(postArray[0], postArray[1], municipality, county);
                 postalCodeTable.put(data.getPostalCode(), data);
             }
         }
@@ -46,7 +48,13 @@ public class PostalCodeService {
         return Optional.ofNullable(postalCodeTable.get(postalCode));
     }
 
-    public List<PostData> findAllPostData() {
+    public List<PostData> getAllPostData() {
         return Collections.unmodifiableList(new ArrayList<>(postalCodeTable.values()));
+    }
+
+    public Set<Municipality> getAllMunicipalities() {
+        return getAllPostData().stream()
+                .map(p -> p.getMunicipality().get())
+                .collect(Collectors.toSet());
     }
 }

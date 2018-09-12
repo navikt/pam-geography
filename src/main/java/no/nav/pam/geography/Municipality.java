@@ -1,14 +1,13 @@
 package no.nav.pam.geography;
 
-
 import java.util.Objects;
 
-public class Country {
+public class Municipality {
 
     private String code;
     private String name;
 
-    public Country(String code, String name) {
+    public Municipality(String code, String name) {
         this.code = code;
         this.name = name;
     }
@@ -25,9 +24,9 @@ public class Country {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Country country = (Country) o;
-        return Objects.equals(code, country.code) &&
-                Objects.equals(name, country.name);
+        Municipality that = (Municipality) o;
+        return Objects.equals(code, that.code) &&
+                Objects.equals(name, that.name);
     }
 
     @Override

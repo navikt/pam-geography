@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class CountryServiceTest {
+public class CountryDAOTest {
 
 
     @Test
     public void should_read_file_correctly() throws Exception {
 
-        CountryService service = new CountryService();
+        CountryDAO service = new CountryDAO();
         List<Country> list = service.getImmutableCountryList();
 
         Optional<Country> norway = list.stream().filter(s -> s.getCode().equals("NO")).findFirst();
@@ -27,7 +27,7 @@ public class CountryServiceTest {
 
     @Test
     public void should_find_country() throws IOException {
-        CountryService service = new CountryService();
+        CountryDAO service = new CountryDAO();
         TestCase.assertTrue(service.findCountry("norge").isPresent());
         TestCase.assertTrue(service.findCountry("sverige").isPresent());
         TestCase.assertFalse(service.findCountry("sweden").isPresent());
