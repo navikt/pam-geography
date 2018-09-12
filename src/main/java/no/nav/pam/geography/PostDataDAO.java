@@ -36,10 +36,12 @@ public class PostDataDAO {
 
                 Municipality municipality = new Municipality(postArray[2], postArray[3]);
                 County county = CountyDAO.findCounty(postArray[2].substring(0, 2)).orElse(null);
-                if(municipality != null && county !=null){
-                    PostData data = new PostData(postArray[0], postArray[1], municipality, county);
+                String postalCode = postArray[0];
+                String city = postArray[1];
+                if (municipality != null && county != null && postalCode != null && city !=null) {
+                    PostData data = new PostData(postalCode, city, municipality, county);
                     postalCodeTable.put(data.getPostalCode(), data);
-                }else {
+                } else {
                     LOG.error("There was an error parsing post data from file for postal code {}", postArray[0]);
                 }
             }
