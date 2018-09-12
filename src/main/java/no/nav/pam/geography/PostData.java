@@ -1,7 +1,6 @@
 package no.nav.pam.geography;
 
 import java.util.Objects;
-import java.util.Optional;
 
 public class PostData {
 
@@ -25,12 +24,12 @@ public class PostData {
         return city;
     }
 
-    public Optional<Municipality> getMunicipality() {
-        return Optional.ofNullable(municipality);
+    public Municipality getMunicipality() {
+        return municipality;
     }
 
-    public Optional<County> getCounty() {
-        return Optional.ofNullable(county);
+    public County getCounty() {
+        return county;
     }
 
     @Override
