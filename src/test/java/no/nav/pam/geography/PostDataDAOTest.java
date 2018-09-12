@@ -10,11 +10,11 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class PostDataUtilTest {
+public class PostDataDAOTest {
 
     @Test
     public void should_lookup_postcode() throws Exception {
-        PostDataUtil service = new PostDataUtil();
+        PostDataDAO service = new PostDataDAO();
 
         PostData pd1 = service.findPostData("0010").orElse(null);
         assertEquals("OSLO", pd1.getCity());
@@ -31,14 +31,14 @@ public class PostDataUtilTest {
 
     @Test
     public void should_get_all_postdata_as_list() throws Exception {
-        PostDataUtil service = new PostDataUtil();
+        PostDataDAO service = new PostDataDAO();
         List<PostData> postDataList = service.getAllPostData();
         assertFalse(postDataList.isEmpty());
     }
 
     @Test
     public void should_get_all_municipalities() throws IOException {
-        PostDataUtil service = new PostDataUtil();
+        PostDataDAO service = new PostDataDAO();
         Set<Municipality> municipalitySet = service.getAllMunicipalities();
         assertFalse(municipalitySet.isEmpty());
         assertEquals(429, municipalitySet.size());

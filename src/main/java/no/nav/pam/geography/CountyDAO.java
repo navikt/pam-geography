@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Source: https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer/postnummertabeller-veiledning
  */
-public class CountyUtil {
+public class CountyDAO {
 
     private static final Set<County> COUNTY_SET;
 

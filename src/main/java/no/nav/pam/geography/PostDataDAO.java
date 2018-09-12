@@ -15,14 +15,14 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * Source: https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer
  */
-public class PostDataUtil {
+public class PostDataDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PostDataUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PostDataDAO.class);
     private final static String FILENAME = "postal_codes_no.tsv";
 
     private final Map<String, PostData> postalCodeTable;
 
-    public PostDataUtil() throws IOException {
+    public PostDataDAO() throws IOException {
 
         postalCodeTable = new HashMap<>();
 
@@ -35,7 +35,7 @@ public class PostDataUtil {
                 String[] postArray = line.split(csvSplitBy);
 
                 Municipality municipality = new Municipality(postArray[2], postArray[3]);
-                County county = CountyUtil.findCounty(postArray[2].substring(0, 2)).orElse(null);
+                County county = CountyDAO.findCounty(postArray[2].substring(0, 2)).orElse(null);
                 PostData data = new PostData(postArray[0], postArray[1], municipality, county);
                 postalCodeTable.put(data.getPostalCode(), data);
             }

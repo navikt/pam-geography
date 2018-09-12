@@ -8,23 +8,23 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class CountyUtilTest {
+public class CountyDAOTest {
 
     @Test
     public void should_find_name(){
-        Optional<String> c  = CountyUtil.findCountyName("01");
+        Optional<String> c  = CountyDAO.findCountyName("01");
         assertTrue(c.isPresent());
         assertEquals("ØSTFOLD", c.get());
 
-        assertFalse(CountyUtil.findCountyName("34").isPresent());
+        assertFalse(CountyDAO.findCountyName("34").isPresent());
     }
 
     @Test
     public void should_find_county(){
-        Optional<County> c  = CountyUtil.findCounty("01");
+        Optional<County> c  = CountyDAO.findCounty("01");
         assertTrue(c.isPresent());
         assertEquals("ØSTFOLD", c.get().getName());
 
-        assertFalse(CountyUtil.findCountyName("34").isPresent());
+        assertFalse(CountyDAO.findCountyName("34").isPresent());
     }
 }
