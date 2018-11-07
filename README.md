@@ -14,3 +14,8 @@ Unaltered dataset from Norwegian Post
 Last update: 30.08.2018  
 https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer  
 https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer/postnummertabeller-veiledning
+
+### Release new version:
+`mvn release:prepare`
+`mvn release:perform`
+`git push`
