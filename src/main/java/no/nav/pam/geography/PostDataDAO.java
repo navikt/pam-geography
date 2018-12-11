@@ -35,7 +35,9 @@ public class PostDataDAO {
                 String[] postArray = line.split(csvSplitBy);
 
                 Municipality municipality = new Municipality(postArray[2], postArray[3]);
-                County county = CountyDAO.findCounty(postArray[2].substring(0, 2)).orElse(null);
+                final String countyCode = postArray[2].substring(0,2);
+                County county = CountyDAO.findCounty(countyCode)
+                        .orElseThrow(() -> new IllegalStateException("No county found for code " + countyCode + ", update CountyDAO"));
                 String postalCode = postArray[0];
                 String city = postArray[1];
                 if (municipality != null && county != null && postalCode != null && city !=null) {
