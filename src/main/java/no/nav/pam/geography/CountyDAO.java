@@ -42,7 +42,7 @@ public class CountyDAO {
     }
 
     public static Optional<String> findCountyName(String countyNumber) {
-        return COUNTY_SET.stream().filter(c -> c.getCode().equals(countyNumber)).map(c -> c.getName()).findAny();
+        return findCounty(countyNumber).map(c -> c.getName());
     }
 
     public static Set<County> getImmutableCountySet() {

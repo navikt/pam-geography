@@ -41,8 +41,6 @@ public class CountryDAO {
         //remove headers
         templist.remove(0);
         countryList = Collections.unmodifiableList(templist);
-
-        LOG.debug("Imported the postal code table from file to memory.");
     }
 
     public List<Country> getImmutableCountryList() {
