@@ -16,6 +16,10 @@ public class Municipality {
         return code;
     }
 
+    public String getCountyCode() {
+        return code.substring(0,2);
+    }
+
     public String getName() {
         return name;
     }
