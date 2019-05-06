@@ -1,15 +1,13 @@
 package no.nav.pam.geography;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class ArenaGeographyDAOTest {
 
@@ -53,6 +51,6 @@ public class ArenaGeographyDAOTest {
 
         Set<ArenaGeography> arenaGeographySet = service.getAllArenaGeographies();
         assertFalse(arenaGeographySet.isEmpty());
-        assertEquals(450, arenaGeographySet.size());
+        assertEquals(445, arenaGeographySet.size());
     }
 }

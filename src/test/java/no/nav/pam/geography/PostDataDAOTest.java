@@ -41,6 +41,6 @@ public class PostDataDAOTest {
         PostDataDAO service = new PostDataDAO();
         Set<Municipality> municipalitySet = service.getAllMunicipalities();
         assertFalse(municipalitySet.isEmpty());
-        assertEquals(429, municipalitySet.size());
+        assertEquals(424, municipalitySet.size());
     }
 }

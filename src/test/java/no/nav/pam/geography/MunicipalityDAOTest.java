@@ -1,13 +1,13 @@
 package no.nav.pam.geography;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import org.junit.Test;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class MunicipalityDAOTest {
 
@@ -29,6 +29,6 @@ public class MunicipalityDAOTest {
         MunicipalityDAO service = new MunicipalityDAO();
         Set<Municipality> municipalitySet = service.getAllMunicipalities();
         assertFalse(municipalitySet.isEmpty());
-        assertEquals(429, municipalitySet.size());
+        assertEquals(424, municipalitySet.size());
     }
 }
