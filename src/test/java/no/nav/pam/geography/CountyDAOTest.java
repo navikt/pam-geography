@@ -1,30 +1,32 @@
 package no.nav.pam.geography;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CountyDAOTest {
 
     @Test
     public void should_find_name(){
-        Optional<String> c  = CountyDAO.findCountyName("01");
+        Optional<String> c  = CountyDAO.findCountyName("03");
         assertTrue(c.isPresent());
-        assertEquals("ØSTFOLD", c.get());
-
-        assertFalse(CountyDAO.findCountyName("34").isPresent());
+        assertEquals("OSLO", c.get());
     }
 
     @Test
     public void should_find_county(){
-        Optional<County> c  = CountyDAO.findCounty("01");
+        Optional<County> c  = CountyDAO.findCounty("30");
         assertTrue(c.isPresent());
-        assertEquals("ØSTFOLD", c.get().getName());
-
-        assertFalse(CountyDAO.findCountyName("34").isPresent());
+        assertEquals("VIKEN", c.get().getName());
     }
+
+    @Test
+    public void should_not_find_deprecated_counties(){
+        assertFalse(CountyDAO.findCountyName("01").isPresent());
+        assertFalse(CountyDAO.findCountyName("02").isPresent());
+        assertFalse(CountyDAO.findCountyName("06").isPresent());
+    }
+
 }

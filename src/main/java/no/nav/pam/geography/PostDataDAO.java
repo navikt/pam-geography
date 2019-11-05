@@ -1,8 +1,5 @@
 package no.nav.pam.geography;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +14,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 public class PostDataDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PostDataDAO.class);
     private final static String FILENAME = "postal_codes_no.tsv";
 
     private final Map<String, PostData> postalCodeTable;
