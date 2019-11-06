@@ -44,4 +44,12 @@ public class PostDataDAOTest {
         // Official number after 1.1.2020 is 356, and this library also includes Svalbard and Jan Mayen, which gives total of 358.
         assertEquals(358, municipalitySet.size());
     }
+
+    @Test
+    public void no_city_names_should_end_with_nonbreakwhitespace_char() throws IOException {
+        new PostDataDAO().getAllPostData().forEach(p -> {
+            assertFalse(p.getCity().charAt(p.getCity().length()-1) == '\u00A0');
+        });
+    }
+
 }
