@@ -7,9 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -22,10 +20,12 @@ public class MunicipalityMergerSupport {
 
     private final MunicipalityDAO municipalityDao;
     private final Map<String,String> transitions;
+    private Set<Municipality> oldMunicipalitySet;
 
     public MunicipalityMergerSupport(MunicipalityDAO municipalityDao) throws IOException {
         this.municipalityDao = Objects.requireNonNull(municipalityDao);
         this.transitions = loadTransitions();
+        this.oldMunicipalitySet = loadOldMunicipal();
     }
 
     /**
@@ -58,6 +58,28 @@ public class MunicipalityMergerSupport {
                             fields -> fields[3].split(" ")[0],
                             (v1,v2) -> v1));
         }
+    }
+
+    public MunicipalityDAO getMunicipalityDao() {
+        return municipalityDao;
+    }
+
+    private Set<Municipality> loadOldMunicipal() throws IOException {
+        try (BufferedReader lineReader = new BufferedReader(new InputStreamReader(
+                getClass().getResourceAsStream(MERGERS_RESOURCE), StandardCharsets.UTF_8))) {
+            return lineReader.lines()
+                    .filter(line -> !line.startsWith("#"))
+                    .map(line -> {
+                            String fields[] = line.split("\t")[1].split(" ");
+                            return new Municipality(fields[0],fields[1]);
+                        }
+                    )
+                    .collect(Collectors.toSet());
+        }
+    }
+
+    public Set<Municipality> getOldMunicipalitySet() {
+        return Collections.unmodifiableSet(oldMunicipalitySet);
     }
 
 }
