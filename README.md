@@ -1,7 +1,12 @@
 # PAM-Geography
 
 PAM-Geography is a simple utility library for lookup of geographic data such as:
-norwegian postal codes, norwegian county names, and country names.
+Norwegian postal codes, Norwegian municipality and county names, and country
+names.
+
+*NB release version 2.0-kor2020 has postal data from the new municipality/county
+mergers that is only valid after 1st of January 2020. Use release 1.9 if
+unsure.*
 
 ## Data sources
 ### List of ISO-3166 countries
