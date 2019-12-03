@@ -1,14 +1,15 @@
 package no.nav.pam.geography;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class PostDataDAOTest {
 
@@ -40,7 +41,15 @@ public class PostDataDAOTest {
     public void should_get_all_municipalities() throws IOException {
         PostDataDAO service = new PostDataDAO();
         Set<Municipality> municipalitySet = service.getAllMunicipalities();
-        assertFalse(municipalitySet.isEmpty());
-        assertEquals(424, municipalitySet.size());
+        // Official number after 1.1.2020 is 356, and this library also includes Svalbard and Jan Mayen, which gives total of 358.
+        assertEquals(358, municipalitySet.size());
     }
+
+    @Test
+    public void no_city_names_should_end_with_nonbreakwhitespace_char() throws IOException {
+        new PostDataDAO().getAllPostData().forEach(p -> {
+            assertFalse(p.getCity().charAt(p.getCity().length()-1) == '\u00A0');
+        });
+    }
+
 }

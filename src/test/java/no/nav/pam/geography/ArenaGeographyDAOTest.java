@@ -1,13 +1,13 @@
 package no.nav.pam.geography;
 
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class ArenaGeographyDAOTest {
 
@@ -35,12 +35,12 @@ public class ArenaGeographyDAOTest {
         assertEquals("NO50.5001", ag.getCode());
         assertEquals("TRONDHEIM", ag.getName());
 
-        ag = service.findArenaGeography("NO02").orElse(null);
-        assertEquals("NO02", ag.getCode());
-        assertEquals("AKERSHUS", ag.getName());
+        ag = service.findArenaGeography("NO30").orElse(null);
+        assertEquals("NO30", ag.getCode());
+        assertEquals("VIKEN", ag.getName());
 
-        ag = service.findArenaGeography("NO02.0220").orElse(null);
-        assertEquals("NO02.0220", ag.getCode());
+        ag = service.findArenaGeography("NO30.3025").orElse(null);
+        assertEquals("NO30.3025", ag.getCode());
         assertEquals("ASKER", ag.getName());
     }
 
@@ -51,6 +51,6 @@ public class ArenaGeographyDAOTest {
 
         Set<ArenaGeography> arenaGeographySet = service.getAllArenaGeographies();
         assertFalse(arenaGeographySet.isEmpty());
-        assertEquals(445, arenaGeographySet.size());
+        assertEquals(372, arenaGeographySet.size());
     }
 }

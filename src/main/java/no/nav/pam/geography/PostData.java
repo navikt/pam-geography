@@ -47,4 +47,14 @@ public class PostData {
     public int hashCode() {
         return Objects.hash(postalCode, city, municipality, county);
     }
+
+    @Override
+    public String toString() {
+        return "PostData{" +
+                "postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", municipality=" + municipality +
+                ", county=" + county +
+                '}';
+    }
 }

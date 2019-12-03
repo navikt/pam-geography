@@ -37,4 +37,9 @@ public class Municipality {
     public int hashCode() {
         return Objects.hash(code, name);
     }
+
+    @Override
+    public String toString() {
+        return "Municipality{" + code + " " + name + "}";
+    }
 }
