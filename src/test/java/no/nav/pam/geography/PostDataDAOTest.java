@@ -48,8 +48,14 @@ public class PostDataDAOTest {
     @Test
     public void no_city_names_should_end_with_nonbreakwhitespace_char() throws IOException {
         new PostDataDAO().getAllPostData().forEach(p -> {
-            assertFalse(p.getCity().charAt(p.getCity().length()-1) == '\u00A0');
+            assertFalse(p.getCity().charAt(p.getCity().length() - 1) == '\u00A0');
         });
+    }
+
+    @Test
+    public void should_get_all_postnr_for_county() throws IOException {
+        PostDataDAO service = new PostDataDAO();
+        assertEquals(service.findPostalCodes("03").size(), 637);
     }
 
 }
