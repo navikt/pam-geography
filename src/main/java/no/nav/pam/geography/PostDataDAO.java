@@ -49,6 +49,12 @@ public class PostDataDAO {
         return Optional.ofNullable(postalCodeTable.get(postalCode));
     }
 
+    public List<PostData> postDataForCounty(String countyCode) {
+        return postalCodeTable.values()
+                .stream().filter(p -> p.getCounty().getCode().equals(countyCode))
+                .collect(Collectors.toList());
+    }
+
     public List<PostData> getAllPostData() {
         return Collections.unmodifiableList(new ArrayList<>(postalCodeTable.values()));
     }
