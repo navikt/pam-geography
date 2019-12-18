@@ -3,17 +3,24 @@ package no.nav.pam.geography;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class ArenaGeographyDAOTest {
 
+    private final PostDataDAO postDataDAO;
+    private final CountryDAO countryDAO;
+
+    public ArenaGeographyDAOTest() throws IOException {
+        this.postDataDAO = new PostDataDAO();
+        this.countryDAO = new CountryDAO();
+    }
+
     @Test
-    public void should_lookup_arenageography() throws Exception {
-        ArenaGeographyDAO service = new ArenaGeographyDAO();
+    public void should_lookup_arenageography() {
+        ArenaGeographyDAO service = new ArenaGeographyDAO(countryDAO, postDataDAO);
 
         ArenaGeography ag = service.findArenaGeography("NO").orElse(null);
         assertEquals("NO", ag.getCode());
@@ -46,11 +53,10 @@ public class ArenaGeographyDAOTest {
 
 
     @Test
-    public void should_get_all_arenageographies() throws IOException {
-        ArenaGeographyDAO service = new ArenaGeographyDAO();
+    public void should_get_all_arenageographies() {
+        ArenaGeographyDAO service = new ArenaGeographyDAO(countryDAO, postDataDAO);
 
-        Set<ArenaGeography> arenaGeographySet = service.getAllArenaGeographies();
-        assertFalse(arenaGeographySet.isEmpty());
-        assertEquals(372, arenaGeographySet.size());
+        Collection<ArenaGeography> arenaGeographies = service.getAllArenaGeographies();
+        assertEquals(373, arenaGeographies.size());
     }
 }
