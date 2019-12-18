@@ -24,6 +24,13 @@ public class PostData {
         return city;
     }
 
+    /**
+     * @return {@link #getCity() City name} capitalized, e.g. "Bø i Telemark" instead of default all uppercase "BØ I TELEMARK".
+     */
+    public String getCapitalizedCityName() {
+        return Names.capitalizeLocationName(city);
+    }
+
     public Municipality getMunicipality() {
         return municipality;
     }

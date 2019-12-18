@@ -20,6 +20,13 @@ public class County {
         return name;
     }
 
+    /**
+     * @return capitalized {@link #getName() county name}, e.g. "Troms og Finnmark" instead of "TROMS OG FINNMARK".
+     */
+    public String getCapitalizedName() {
+        return Names.capitalizeLocationName(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

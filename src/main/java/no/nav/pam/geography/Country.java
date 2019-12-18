@@ -21,6 +21,13 @@ public class Country {
         return name;
     }
 
+    /**
+     * @return capitalized {@link #getName() country name}, e.g. "Norway" instead of "NORWAY".
+     */
+    public String getCapitalizedName() {
+        return Names.capitalizeLocationName(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

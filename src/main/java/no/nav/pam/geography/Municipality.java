@@ -24,6 +24,13 @@ public class Municipality {
         return name;
     }
 
+    /**
+     * @return capitalized {@link #getName() municipality name}, e.g. "Sør-Fron" instead of "SØR-FRON"
+     */
+    public String getCapitalizedName() {
+        return Names.capitalizeLocationName(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
