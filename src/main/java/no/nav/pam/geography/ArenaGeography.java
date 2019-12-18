@@ -51,4 +51,12 @@ public class ArenaGeography {
     public String getName() {
         return name;
     }
+
+    /**
+     *
+     * @return {@link #getName() name} in capitalized form, e.g. "Oslo" instead of "OSLO"
+     */
+    public String getCapitalizedName() {
+        return Names.capitalizeLocationName(name);
+    }
 }
