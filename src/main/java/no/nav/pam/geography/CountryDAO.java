@@ -29,7 +29,7 @@ public class CountryDAO {
             while ((line = br.readLine()) != null) {
                 String[] landArray = line.split(csvSplitBy);
 
-                Country country = new Country(stripQuotesAndCapitalize(landArray[0]), stripQuotesAndCapitalize(landArray[3]));
+                Country country = new Country(stripQuotesAndUppercase(landArray[0]), stripQuotesAndUppercase(landArray[3]));
                 templist.add(country);
             }
         }
@@ -48,7 +48,7 @@ public class CountryDAO {
         return countryList.stream().filter(c -> c.getName().equalsIgnoreCase(name)).findFirst();
     }
 
-    private String stripQuotesAndCapitalize(String value) {
+    private String stripQuotesAndUppercase(String value) {
         return value.substring(1, value.length() - 1).toUpperCase();
     }
 }
