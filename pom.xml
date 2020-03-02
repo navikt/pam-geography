@@ -77,18 +77,19 @@
     <tag>HEAD</tag>
   </scm>
 
+  <repositories>
+    <repository>
+      <name>jcenter</name>
+      <id>jcenter</id>
+      <url>http://jcenter.bintray.com/</url>
+    </repository>
+  </repositories>
+
   <distributionManagement>
     <repository>
-      <id>m2internal</id>
-      <name>NAV Maven2 Internal Repository</name>
-      <url>https://repo.adeo.no/repository/maven-releases</url>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/navikt/pam-geography</url>
     </repository>
-    <snapshotRepository>
-      <id>m2snapshot</id>
-      <name>NAV Maven2 Snapshot Repository</name>
-      <url>https://repo.adeo.no/repository/maven-snapshots</url>
-      <uniqueVersion>false</uniqueVersion>
-    </snapshotRepository>
   </distributionManagement>
 
 </project>
