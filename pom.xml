@@ -3,7 +3,7 @@
 
   <groupId>no.nav.pam.geography</groupId>
   <artifactId>pam-geography</artifactId>
-  <version>2.6-SNAPSHOT</version>
+  <version>2.6</version>
 
   <name>pam-geography</name>
 
