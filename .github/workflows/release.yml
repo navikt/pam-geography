@@ -1,0 +1,30 @@
+name: Release (Github Package Registry)
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
+      - "LICENCE.md"
+      - "CODEOWNERS"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Run release procedure
+        run: ./release.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
