@@ -4,24 +4,21 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class ArenaGeographyDAOTest {
 
-    private final PostDataDAO postDataDAO;
-    private final CountryDAO countryDAO;
+    private final ArenaGeographyDAO service;
 
     public ArenaGeographyDAOTest() throws IOException {
-        this.postDataDAO = new PostDataDAO();
-        this.countryDAO = new CountryDAO();
+        this.service = new ArenaGeographyDAO(new CountryDAO(), new PostDataDAO());
     }
 
     @Test
     public void should_lookup_arenageography() {
-        ArenaGeographyDAO service = new ArenaGeographyDAO(countryDAO, postDataDAO);
-
         ArenaGeography ag = service.findArenaGeography("NO").orElse(null);
         assertEquals("NO", ag.getCode());
         assertEquals("NORGE", ag.getName());
@@ -54,9 +51,12 @@ public class ArenaGeographyDAOTest {
 
     @Test
     public void should_get_all_arenageographies() {
-        ArenaGeographyDAO service = new ArenaGeographyDAO(countryDAO, postDataDAO);
+        assertEquals(373, service.getAllArenaGeographies().stream().filter(geo -> !geo.getCode().startsWith("NO99")).count());
+    }
 
-        Collection<ArenaGeography> arenaGeographies = service.getAllArenaGeographies();
-        assertEquals(373, arenaGeographies.size());
+    @Test
+    public void should_have_NO99_geographies() {
+        assertEquals("ØVRIGE OMRÅDER", service.findArenaGeography("NO99").map(ArenaGeography::getName).orElse(null));
+        assertEquals("SVALBARD", service.findArenaGeography("NO99.2100").map(ArenaGeography::getName).orElse(null));
     }
 }
