@@ -1,13 +1,13 @@
 package no.nav.pam.geography;
 
 
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 
 public class CountryDAOTest {
@@ -32,5 +32,13 @@ public class CountryDAOTest {
         assertTrue(service.findCountry("norge").isPresent());
         assertTrue(service.findCountry("sverige").isPresent());
         assertFalse(service.findCountry("sweden").isPresent());
+    }
+
+    @Test
+    public void should_find_country_by_country_code() throws IOException {
+        CountryDAO service = new CountryDAO();
+        assertTrue(service.findCountryByCode("NO").isPresent());
+        assertTrue(service.findCountryByCode("no").isPresent());
+        assertFalse(service.findCountryByCode("xxx").isPresent());
     }
 }

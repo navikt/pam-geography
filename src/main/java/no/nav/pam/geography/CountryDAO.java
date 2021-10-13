@@ -5,12 +5,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class CountryDAO {
 
@@ -47,6 +46,11 @@ public class CountryDAO {
 
         return countryList.stream().filter(c -> c.getName().equalsIgnoreCase(name)).findFirst();
     }
+
+    public Optional<Country> findCountryByCode(String code) {
+        return countryList.stream().filter(c -> c.getCode().equalsIgnoreCase(code)).findFirst();
+    }
+
 
     private String stripQuotesAndUppercase(String value) {
         return value.substring(1, value.length() - 1).toUpperCase();
