@@ -16,14 +16,14 @@ public class ArenaGeographyDAO {
     public ArenaGeographyDAO(CountryDAO countryDao, PostDataDAO postDataDAO) {
 
         final Country norway = countryDao.findCountry("norge").orElseThrow(
-                () -> new IllegalStateException("Could not lookup 'norge' from CountryDAO"));
+            () -> new IllegalStateException("Could not lookup 'norge' from CountryDAO"));
 
         ArenaGeography codeWithCountry = new ArenaGeography(norway);
         arenaCodeTable.put(codeWithCountry.getCode(), codeWithCountry);
 
         postDataDAO.getAllMunicipalities().forEach(municipality -> {
             County county = CountyDAO.findCounty(municipality.getCountyCode()).orElseThrow(
-                    () -> new IllegalStateException(String.format("County for municipality {} not found in CountyDAO", municipality)));
+                () -> new IllegalStateException(String.format("County for municipality {} not found in CountyDAO", municipality)));
             ArenaGeography codeWithMunicipality = new ArenaGeography(norway, county, municipality);
             arenaCodeTable.put(codeWithMunicipality.getCode(), codeWithMunicipality);
         });
@@ -53,19 +53,17 @@ public class ArenaGeographyDAO {
      * @return list of arena geographies of territories
      */
     private static List<ArenaGeography> getNO99Geographies() {
-        final Country norway = new Country("NO", "NORGE");
+        final Country norway = new Country("NO", "NOR", "NORGE");
         final County territories = new County("99", "ØVRIGE OMRÅDER");
 
-        return Arrays.asList(new ArenaGeography[] {
-                new ArenaGeography(norway, territories),
-                new ArenaGeography(norway, territories, new Municipality("2131", "HOPEN")),
-                new ArenaGeography(norway, territories, new Municipality("2121", "BJØRNØYA")),
-                new ArenaGeography(norway, territories, new Municipality("2100", "SVALBARD")),
-                new ArenaGeography(norway, territories, new Municipality("2211", "JAN MAYEN")),
-                new ArenaGeography(norway, territories, new Municipality("2201", "NORDSJØEN")),
-                new ArenaGeography(norway, territories, new Municipality("2111", "LONGYEARBYEN")),
-                new ArenaGeography(norway, territories, new Municipality("2311", "SOKKELEN SØR FOR 62 BRGR")),
-                new ArenaGeography(norway, territories, new Municipality("2321", "SOKKELEN NORD FOR 62 BRGR")),
-        });
+        return Arrays.asList(new ArenaGeography(norway, territories),
+            new ArenaGeography(norway, territories, new Municipality("2131", "HOPEN")),
+            new ArenaGeography(norway, territories, new Municipality("2121", "BJØRNØYA")),
+            new ArenaGeography(norway, territories, new Municipality("2100", "SVALBARD")),
+            new ArenaGeography(norway, territories, new Municipality("2211", "JAN MAYEN")),
+            new ArenaGeography(norway, territories, new Municipality("2201", "NORDSJØEN")),
+            new ArenaGeography(norway, territories, new Municipality("2111", "LONGYEARBYEN")),
+            new ArenaGeography(norway, territories, new Municipality("2311", "SOKKELEN SØR FOR 62 BRGR")),
+            new ArenaGeography(norway, territories, new Municipality("2321", "SOKKELEN NORD FOR 62 BRGR")));
     }
 }

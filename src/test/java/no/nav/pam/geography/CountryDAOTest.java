@@ -39,6 +39,8 @@ public class CountryDAOTest {
         CountryDAO service = new CountryDAO();
         assertTrue(service.findCountryByCode("NO").isPresent());
         assertTrue(service.findCountryByCode("no").isPresent());
+        assertEquals(service.findCountryByCode("NO"), service.findCountryByCode("NOR"));
+        assertEquals(service.findCountryByCode("se"), service.findCountryByCode("swe"));
         assertFalse(service.findCountryByCode("xxx").isPresent());
     }
 }

@@ -6,13 +6,9 @@ names.
 
 ## Data sources
 ### List of ISO-3166 countries
-
-Unaltered dataset from SSB (see Standard for landkoder utenrikshandel)
+Unaltered dataset from https://stefangabos.github.io/world_countries/
 
 Last update: see git log
-
-https://www.ssb.no/klass/klassifikasjoner/100
-
 
 ### Norwegian postal codes, county  codes, cities
 
