@@ -1,4 +1,4 @@
-# PAM-Geography
+## Beskrivelse
 
 PAM-Geography is a simple utility library for lookup of geographic data such as:
 Norwegian postal codes, Norwegian municipality and county names, and country
