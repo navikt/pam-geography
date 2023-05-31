@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class PostDataDAOTest {
@@ -56,6 +55,12 @@ public class PostDataDAOTest {
     public void should_get_all_postnr_for_county() throws IOException {
         PostDataDAO service = new PostDataDAO();
         assertEquals(service.postDataForCounty("03").size(), 637);
+    }
+
+    @Test
+    public void should_get_all_postnr_for_city() throws IOException {
+        PostDataDAO service = new PostDataDAO();
+        assertTrue(service.findPostDataForCity("Oslo").size() > 0);
     }
 
 }
