@@ -58,7 +58,7 @@ public class PostDataDAOTest {
     }
 
     @Test
-    public void should_get_all_postnr_for_city() throws IOException {
+    public void should_get_postnr_for_city() throws IOException {
         PostDataDAO service = new PostDataDAO();
         assertTrue(service.findPostDataForCity("Oslo").size() > 0);
     }
