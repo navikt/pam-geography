@@ -49,9 +49,15 @@ public class PostDataDAO {
         return Optional.ofNullable(postalCodeTable.get(postalCode));
     }
 
+    public List<PostData> findPostDataForCity(String city) {
+        return postalCodeTable.values()
+                .stream().filter(p -> p.getCity().equalsIgnoreCase(city))
+                .collect(Collectors.toList());
+    }
+
     public List<PostData> postDataForCounty(String countyCode) {
         return postalCodeTable.values()
-                .stream().filter(p -> p.getCounty().getCode().equals(countyCode))
+                .stream().filter(p -> p.getCounty().getCode().equalsIgnoreCase(countyCode))
                 .collect(Collectors.toList());
     }
 
