@@ -18,6 +18,17 @@ public class PostDataDAO {
 
     private final Map<String, PostData> postalCodeTable;
 
+    // Overstyr navn pga etter kommunesammenslåingen er det mange som fremdeles tror de bruker den gamle kommunen, og
+    // da havner stillingen feil sted geografisk. Ved å anngi fylke er det lettere å se at man velger riktig sted.
+    private final Map<String, String> overriddenNamesMunicipality = new HashMap<>(){
+            {
+                put("3430", "OS (INNLANDET)");
+                put("1514", "SANDE (MØRE OG ROMSDAL)");
+                put("1867", "BØ (NORDLAND)");
+                put("3034", "NES (VIKEN)");
+            }
+    };
+
     public PostDataDAO() throws IOException {
 
         postalCodeTable = new HashMap<>();
@@ -30,12 +41,18 @@ public class PostDataDAO {
             while ((line = br.readLine()) != null) {
                 String[] postArray = line.split(csvSplitBy);
 
-                Municipality municipality = new Municipality(postArray[2], postArray[3]);
+                String municipalityCode = postArray[2];
+                String municipalityName = postArray[3];
+                Municipality municipality = new Municipality(municipalityCode, municipalityName);
+                if (overriddenNamesMunicipality.containsKey(municipalityCode)) {
+                    municipality = new Municipality(municipalityCode, overriddenNamesMunicipality.get(municipalityCode));
+                }
+
                 County county = CountyDAO.findCounty(municipality.getCountyCode())
-                        .orElseThrow(() -> new IllegalStateException("No county found for code " + municipality.getCountyCode() + ", update CountyDAO"));
+                        .orElseThrow(() -> new IllegalStateException("No county found for code " + municipalityCode + ", update CountyDAO"));
                 String postalCode = postArray[0];
                 String city = postArray[1];
-                if (municipality != null && county != null && postalCode != null && city !=null) {
+                if (county != null && postalCode != null && city !=null) {
                     PostData data = new PostData(postalCode, city, municipality, county);
                     postalCodeTable.put(data.getPostalCode(), data);
                 } else {

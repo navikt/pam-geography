@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,4 +64,16 @@ public class PostDataDAOTest {
         assertTrue(service.findPostDataForCity("Oslo").size() > 0);
     }
 
+    @Test
+    public void overstyrte_kommunenavn() throws Exception {
+        Set<Municipality> alleKommuner = new PostDataDAO().getAllMunicipalities();
+        assertEquals("OS (INNLANDET)", finnKommune("3430", alleKommuner).getName());
+        assertEquals("SANDE (MØRE OG ROMSDAL)", finnKommune("1514", alleKommuner).getName());
+        assertEquals("BØ (NORDLAND)", finnKommune("1867", alleKommuner).getName());
+        assertEquals("NES (VIKEN)", finnKommune("3034", alleKommuner).getName());
+    }
+
+    private static Municipality finnKommune(String kommunenr, Set<Municipality> allMunicipalities) {
+        return allMunicipalities.stream().filter(kommune -> kommunenr.equals(kommune.getCode())).findFirst().get();
+    }
 }
