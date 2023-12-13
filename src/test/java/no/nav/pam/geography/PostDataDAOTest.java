@@ -42,7 +42,7 @@ public class PostDataDAOTest {
         PostDataDAO service = new PostDataDAO();
         Set<Municipality> municipalitySet = service.getAllMunicipalities();
         // Official number after 1.1.2020 is 356, and this library also includes Svalbard and Jan Mayen, which gives total of 358.
-        assertEquals(358, municipalitySet.size());
+        assertEquals(359, municipalitySet.size());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class PostDataDAOTest {
         assertEquals("OS (INNLANDET)", finnKommune("3430", alleKommuner).getName());
         assertEquals("SANDE (MØRE OG ROMSDAL)", finnKommune("1514", alleKommuner).getName());
         assertEquals("BØ (NORDLAND)", finnKommune("1867", alleKommuner).getName());
-        assertEquals("NES (VIKEN)", finnKommune("3034", alleKommuner).getName());
+        assertEquals("NES (VIKEN)", finnKommune("3228", alleKommuner).getName());
     }
 
     private static Municipality finnKommune(String kommunenr, Set<Municipality> allMunicipalities) {

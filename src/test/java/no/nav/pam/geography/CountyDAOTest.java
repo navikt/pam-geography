@@ -17,9 +17,9 @@ public class CountyDAOTest {
 
     @Test
     public void should_find_county(){
-        Optional<County> c  = CountyDAO.findCounty("30");
+        Optional<County> c  = CountyDAO.findCounty("32");
         assertTrue(c.isPresent());
-        assertEquals("VIKEN", c.get().getName());
+        assertEquals("AKERSHUS", c.get().getName());
     }
 
     @Test

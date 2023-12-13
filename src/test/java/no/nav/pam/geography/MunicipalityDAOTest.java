@@ -16,8 +16,8 @@ public class MunicipalityDAOTest {
     public void should_lookup_municipality() throws Exception {
         MunicipalityDAO service = new MunicipalityDAO();
 
-        Municipality m1 = service.findMunicipality("3025").orElse(null);
-        assertEquals("3025", m1.getCode());
+        Municipality m1 = service.findMunicipality("3203").orElse(null);
+        assertEquals("3203", m1.getCode());
         assertEquals("ASKER", m1.getName());
 
         Municipality m2 = service.findMunicipality("5001").orElse(null);
@@ -34,7 +34,7 @@ public class MunicipalityDAOTest {
         MunicipalityDAO service = new MunicipalityDAO();
         Set<Municipality> municipalitySet = service.getAllMunicipalities();
         // Official number after 1.1.2020 is 356, and this library also includes Svalbard and Jan Mayen, which gives total of 358.
-        assertEquals(358, municipalitySet.size());
+        assertEquals(359, municipalitySet.size());
     }
 
     // Bug observed in data file from Norwegian postal services where a small percentage of municipality names contained

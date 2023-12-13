@@ -21,13 +21,17 @@ public class CountyDAO {
         COUNTY_SET.add(new County("21", "SVALBARD"));
         COUNTY_SET.add(new County("22", "JAN MAYEN"));
         COUNTY_SET.add(new County("23", "KONTINENTALSOKKELEN"));
-        COUNTY_SET.add(new County("30", "VIKEN"));
+        COUNTY_SET.add(new County("31", "ØSTFOLD"));
+        COUNTY_SET.add(new County("32", "AKERSHUS"));
+        COUNTY_SET.add(new County("33", "BUSKERUD"));
         COUNTY_SET.add(new County("34", "INNLANDET"));
-        COUNTY_SET.add(new County("38", "VESTFOLD OG TELEMARK"));
+        COUNTY_SET.add(new County("39", "VESTFOLD"));
+        COUNTY_SET.add(new County("40", "TELEMARK"));
         COUNTY_SET.add(new County("42", "AGDER"));
         COUNTY_SET.add(new County("46", "VESTLAND"));
         COUNTY_SET.add(new County("50", "TRØNDELAG"));
-        COUNTY_SET.add(new County("54", "TROMS OG FINNMARK"));
+        COUNTY_SET.add(new County("55", "TROMS"));
+        COUNTY_SET.add(new County("56", "FINNMARK"));
     }
 
     public static Optional<County> findCounty(String countyNumber) {
