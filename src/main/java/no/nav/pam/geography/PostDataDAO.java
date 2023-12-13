@@ -25,7 +25,7 @@ public class PostDataDAO {
                 put("3430", "OS (INNLANDET)");
                 put("1514", "SANDE (MØRE OG ROMSDAL)");
                 put("1867", "BØ (NORDLAND)");
-                put("3228", "NES (VIKEN)");
+                put("3228", "NES (AKERSHUS)");
             }
     };
 

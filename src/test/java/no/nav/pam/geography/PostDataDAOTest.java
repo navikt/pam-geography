@@ -70,7 +70,7 @@ public class PostDataDAOTest {
         assertEquals("OS (INNLANDET)", finnKommune("3430", alleKommuner).getName());
         assertEquals("SANDE (MØRE OG ROMSDAL)", finnKommune("1514", alleKommuner).getName());
         assertEquals("BØ (NORDLAND)", finnKommune("1867", alleKommuner).getName());
-        assertEquals("NES (VIKEN)", finnKommune("3228", alleKommuner).getName());
+        assertEquals("NES (AKERSHUS)", finnKommune("3228", alleKommuner).getName());
     }
 
     private static Municipality finnKommune(String kommunenr, Set<Municipality> allMunicipalities) {
