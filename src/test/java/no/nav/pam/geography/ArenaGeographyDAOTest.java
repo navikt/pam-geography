@@ -39,19 +39,19 @@ public class ArenaGeographyDAOTest {
         assertEquals("NO50.5001", ag.getCode());
         assertEquals("TRONDHEIM", ag.getName());
 
-        ag = service.findArenaGeography("NO30").orElse(null);
-        assertEquals("NO30", ag.getCode());
-        assertEquals("VIKEN", ag.getName());
+        ag = service.findArenaGeography("NO32").orElse(null);
+        assertEquals("NO32", ag.getCode());
+        assertEquals("AKERSHUS", ag.getName());
 
-        ag = service.findArenaGeography("NO30.3025").orElse(null);
-        assertEquals("NO30.3025", ag.getCode());
+        ag = service.findArenaGeography("NO32.3203").orElse(null);
+        assertEquals("NO32.3203", ag.getCode());
         assertEquals("ASKER", ag.getName());
     }
 
 
     @Test
     public void should_get_all_arenageographies() {
-        assertEquals(373, service.getAllArenaGeographies().stream().filter(geo -> !geo.getCode().startsWith("NO99")).count());
+        assertEquals(378, service.getAllArenaGeographies().stream().filter(geo -> !geo.getCode().startsWith("NO99")).count());
     }
 
     @Test
