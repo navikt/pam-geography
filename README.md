@@ -35,11 +35,11 @@ Recipe for updating the postal codes data file using the command line:
     Verify diff, to notice if anything is fundametally wrong or changed with
     upstream data or format:
 
-        $ diff -u resources/postal_codes_no.tsv postal_codes_no.tsv.new
+        $ diff -u postal_codes_no.tsv postal_codes_no.tsv.new
         
     Move into place:
     
-        $ mv postal_codes_no.tsv.new resources/postal_codes_no.tsv
+        $ mv postal_codes_no.tsv.new postal_codes_no.tsv
         $ git add .
         $ ...
         
