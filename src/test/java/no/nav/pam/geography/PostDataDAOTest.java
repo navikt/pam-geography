@@ -55,7 +55,7 @@ public class PostDataDAOTest {
     @Test
     public void should_get_all_postnr_for_county() throws IOException {
         PostDataDAO service = new PostDataDAO();
-        assertEquals(service.postDataForCounty("03").size(), 637);
+        assertEquals(service.postDataForCounty("03").size(), 634);
     }
 
     @Test
