@@ -1,3 +1,7 @@
+## IKKE TA I BRUK 
+Dette prosjektet blir ikke lenger vedlikeholdt. Vennligst ta i bruk https://github.com/navikt/pam-geografi
+
+
 ## Beskrivelse
 
 PAM-Geography is a simple utility library for lookup of geographic data such as:
